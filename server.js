@@ -1,9 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const authRoutes = require('./route/authRoutes');
+const paymentRoutes = require('./route/paymentRoutes');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/payments', paymentRoutes);
 
 mongoose.connect('mongodb://localhost:27017/storageDate')
 .then(() => {
